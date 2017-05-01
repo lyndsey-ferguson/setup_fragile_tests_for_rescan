@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='BlackHoleFooleryUITests.xctest' tests='8' failures='0'>
+  <testsuite name='BlackHoleFooleryUITests' tests='8' failures='0'>
+    <testcase classname='BlackHoleFooleryUITests' name='testInitialViewContainsElements' time='30.323'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingStartButtonBeginsTravellingIntoBlackHole' time='24.104'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingStopButtonBeforeEventHorizonStops' time='10.845'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingStopButtonBeepsWhenInEventHorizonButDoesNotStop' time='22.553'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingStopButtonWhenInBlackHoleInitiatesBigBang' time='17.563'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingEscapeHatchButtonEjectsPilotIntoColdBlackSpaceWhenOutsideOfEventHorizon' time='12.513'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingEscapeHatchButtonStretchesAndDestroysPilotWhenInEventHorizon' time='49.414'/>
+    <testcase classname='BlackHoleFooleryUITests' name='testPressingEscapeHatchButtonPunchesPilotToParadiseWhenInBlackHole'>
+      <failure message='UI Tests - Failure attempting to launch &lt;XCUIApplicationImpl: 0x60800043b740 com.blackhole.foolery at /Users/majortom/Library/Developer/Xcode/DerivedData/workspace-ajewgkjbisfmvbcvepeaybophebo/Build/Products/UI Tests-iphonesimulator/Appian.app&gt;: Error Domain=FBSOpenApplicationServiceErrorDomain Code=1 &quot;The request to open &quot;com.blackhole.foolery&quot; failed.&quot; UserInfo={NSLocalizedDescription=The request to open &quot;com.blackhole.foolery&quot; failed., NSLocalizedFailureReason=The request was denied by service delegate (SBMainWorkspace) for reason: Busy (&quot;Application &quot;com.blackhole.foolery&quot; is installing or uninstalling, and cannot be launched&quot;)., BSErrorCodeDescription=RequestDenied, NSUnderlyingError=0x60000025bb10 {Error Domain=FBSOpenApplicationErrorDomain Code=6 &quot;Application &quot;com.blackhole.foolery&quot; is installing or uninstalling, and cannot be launched.&quot; UserInfo={BSErrorCodeDescription=Busy, NSLocalizedFailureReason=Application &quot;com.blackhole.foolery&quot; is installing or uninstalling, and cannot be launched.}}}'>&lt;unknown&gt;:0</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
