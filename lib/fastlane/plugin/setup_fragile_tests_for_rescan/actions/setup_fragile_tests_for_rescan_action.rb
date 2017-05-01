@@ -11,11 +11,20 @@ module Fastlane
         UI.user_error!("Malformed XML test report file given") if report_file.root.nil?
         UI.user_error!("Valid XML file is not an Xcode test report") if report_file.get_elements('testsuites').empty?
 
+        result = {
+          passed_tests: [],
+          failed_tests: []
+        }
+
         # remove all testcases that failed from the report file
         # so that our subsequent steps here can just focus on finding
         # passing testcases to suppress
         report_file.elements.each('*/testsuite/testcase/failure') do |failure_element|
-          failure_element.parent.parent.delete_element failure_element.parent
+          testcase = failure_element.parent
+          testsuite_element = testcase.parent
+
+          result[:failed_tests] << xcodebuild_test_identifier(testsuite_element.parent, testcase)
+          testsuite_element.delete_element testcase
         end
 
         scheme = xcscheme(params)
@@ -30,8 +39,9 @@ module Fastlane
 
           testsuites.elements.each('testsuite/testcase') do |testcase|
             skipped_test = Xcodeproj::XCScheme::TestAction::TestableReference::SkippedTest.new
-            skipped_test.identifier = skipped_test_identifier(testcase.attributes['classname'], testcase.attributes['name'])
+            skipped_test.identifier = xctest_identifier(testcase)
             testable.add_skipped_test(skipped_test)
+            result[:passed_tests] << xcodebuild_test_identifier(testsuites, testcase)
             is_dirty = true
             summary << [skipped_test.identifier]
           end
@@ -46,7 +56,7 @@ module Fastlane
         else
           UI.error('No passing tests found for suppression')
         end
-        summary.flatten
+        result
       end
 
       def self.xcscheme(params)
@@ -62,11 +72,21 @@ module Fastlane
         Xcodeproj::XCScheme.new(scheme_filepath)
       end
 
-      def self.skipped_test_identifier(testcase_class, testcase_testmethod)
+      def self.xctest_identifier(testcase)
+        testcase_class = testcase.attributes['classname']
+        testcase_testmethod = testcase.attributes['name']
+
         is_swift = testcase_class.include?('.')
         testcase_class.gsub!(/.*\./, '')
         testcase_testmethod << '()' if is_swift
         "#{testcase_class}/#{testcase_testmethod}"
+      end
+
+      def self.xcodebuild_test_identifier(testsuites, testcase)
+        # remove '.xctest' from the buildable_name
+        buildable_name = File.basename(testsuites.attributes['name'], '.*')
+        test_identifier = xctest_identifier(testcase).chomp('()')
+        "#{buildable_name}/#{test_identifier}"
       end
 
       def self.description
@@ -74,7 +94,7 @@ module Fastlane
       end
 
       def self.return_value
-        "A list of the tests to suppress if you use going to use the :skip_testing option in the scan action"
+        "A hash of the tests with arrays :passed_tests and :failed_tests which can be used with scan's :skip_testing and :test_only options"
       end
 
       def self.authors
@@ -122,6 +142,7 @@ module Fastlane
       end
 
       def self.is_supported?(platform)
+        STDOUT.puts "platform: #{platform}"
         %i[ios mac].include?(platform)
       end
     end
