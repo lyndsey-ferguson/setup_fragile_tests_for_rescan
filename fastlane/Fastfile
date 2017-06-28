@@ -4,15 +4,14 @@ lane :test do |options|
   scan_options = {
     scheme: scheme_to_test,
     device: 'iPhone 5s (10.0)',
-    output_directory: 'artifacts/tests',
-    custom_report_file_name: 'report.xml'
+    output_directory: 'artifacts/tests'
   }
   begin
     retry_count ||= 0
     scan(scan_options)
   rescue => e
     UI.important("failure noted: #{e}")
-    report_filepath = File.absolute_path('../artifacts/tests/report.xml')
+    report_filepath = File.absolute_path('../artifacts/tests/report.junit')
     unless File.exist?(report_filepath)
       raise e
     end
@@ -25,6 +24,8 @@ lane :test do |options|
       clear_derived_data
       reset_simulator_contents if retry_count > 1
       retry
+    else
+      exit 1
     end
   end
 end
