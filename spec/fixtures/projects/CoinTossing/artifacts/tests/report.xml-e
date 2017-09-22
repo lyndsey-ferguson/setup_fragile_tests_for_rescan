@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='CoinTossingUITests.xctest' tests='2' failures='0'>
-  <testsuite name='CoinTossingUITests.CoinTossingUITests' tests='2' failures='0'>
-    <testcase classname='CoinTossingUITests.CoinTossingUITests' name='testResultIsHeads' time='7.831'/>
-    <testcase classname='CoinTossingUITests.CoinTossingUITests' name='testResultIsTails' time='7.515'/>
-  </testsuite>
-</testsuites>
