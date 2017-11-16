@@ -106,7 +106,7 @@ module Fastlane
       end
 
       def self.deprecated_notes
-        "This action is deprecated in favor of the suppress_tests_from_junit and multi_scan actions shipped with the test_control plugin"
+        "This action is deprecated in favor of the suppress_tests_from_junit and multi_scan actions shipped with the test_center plugin"
       end
 
       def self.category
