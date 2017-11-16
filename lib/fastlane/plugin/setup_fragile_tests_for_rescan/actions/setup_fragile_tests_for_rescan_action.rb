@@ -105,6 +105,14 @@ module Fastlane
         "Reviews the scan report file to find the passing tests in an Xcode project and then suppresses the tests in the test-suite's source file."
       end
 
+      def self.deprecated_notes
+        "This action is deprecated in favor of the suppress_tests_from_junit and multi_scan actions shipped with the test_control plugin"
+      end
+
+      def self.category
+        :deprecated
+      end
+
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(
