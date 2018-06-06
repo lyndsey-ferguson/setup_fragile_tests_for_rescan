@@ -4,7 +4,7 @@
 
 Please use the `:suppress_tests_from_junit` and `:multi_scan` actions shipped with the [`test_center`](https://github.com/lyndsey-ferguson/fastlane-plugin-test_center) plugin
 
-[![fastlane Plugin Badge]https://img.shields.io/badge/setup__fragile__tests__for__rescan-deprecated-red.svg](https://rubygems.org/gems/fastlane-plugin-setup_fragile_tests_for_rescan)
+![fastlane Plugin Badge](https://img.shields.io/badge/setup__fragile__tests__for__rescan-deprecated-red.svg)
 
 ## Getting Started
 
