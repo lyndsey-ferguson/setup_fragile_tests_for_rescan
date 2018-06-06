@@ -1,4 +1,8 @@
-# setup_fragile_tests_for_rescan plugin
+# ❗ setup_fragile_tests_for_rescan plugin is deprecated ❗
+
+![Deprecated](https://cdn.pixabay.com/photo/2014/12/29/14/02/classic-car-582812_960_720.jpg)
+
+Please use the `:suppress_tests_from_junit` and `:multi_scan` actions shipped with the [`test_center`](https://github.com/lyndsey-ferguson/fastlane-plugin-test_center) plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-setup_fragile_tests_for_rescan)
 
